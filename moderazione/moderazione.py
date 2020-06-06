@@ -34,6 +34,7 @@ class Moderazione(commands.Cog):
     @commands.command(aliases = ["clear"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def purge(self, ctx, amount = 10):
+	"""Elimina una quantità di messaggi."""
         max_purge = 2000
         if amount >= 1 and amount <= max_purge:
             await ctx.channel.purge(limit = amount + 1)
@@ -124,6 +125,7 @@ class Moderazione(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def ban(self, ctx, member : discord.Member = None, *, reason = None):
+	"""Banna una persona dal server."""
         if member == None:
             await ctx.send(f'{error} | Devi specificare un utente!')
         else:
@@ -183,6 +185,7 @@ class Moderazione(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def unban(self, ctx, *, member : discord.User = None):
+	"""Unbanna (toglie il ban) una persona dal server"""
         if member == None:
             await ctx.send(f'{error} | Devi specificare un utente!', delete_after = 5.0)
         else:
@@ -220,6 +223,7 @@ class Moderazione(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def mute(self, ctx, member : discord.Member = None, *, reason = None):
+	"""Muta una persona nel server."""
         if member == None:
             await ctx.send(f'{error} | Devi specificare un utente!', delete_after = 5.0)
         else:
@@ -282,6 +286,7 @@ class Moderazione(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def unmute(self, ctx, member : discord.Member = None):
+	"""Smuta (toglie il muto) una persona del server."""
         if member == None:
             await ctx.send(f'{error} | Devi specificare un utente!', delete_after = 5.0)
         else:
@@ -316,6 +321,7 @@ class Moderazione(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def nuke(self, ctx):
+	"""Detona (elimina tutti i messaggi) un canale testuale"""
         channel_position = ctx.channel.position
         new_channel = await ctx.channel.clone()
         await new_channel.edit(reason = f"Detonato da {ctx.message.author.name}#{ctx.message.author.discriminator}", position = channel_position)
