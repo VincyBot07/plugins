@@ -6,6 +6,8 @@ from core.models import PermissionLevel
 counter = 0
 counter = counter + 1
 
+casefile = 'plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt'
+
 trash = "🗑️"
 error = "❌"
 info = "ℹ️"
@@ -72,11 +74,11 @@ class Moderazione(commands.Cog):
                 await ctx.send('{error} | Non puoi kickare te stesso!')
             else:
                 if reason == None:
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                    with open(casefile,'r') as file:
                        counter = int(file.read())+1
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                    with open(casefile,'w') as file:
                        file.write(str(counter))
-                    case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                    case = open(casefile, 'r').read()
                     await member.kick(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo specificato.")
                     await ctx.send(f"{member.name}#{member.discriminator} è stato kickato da {ctx.message.author.mention}, questo è il caso numero {case}.")
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
@@ -90,11 +92,11 @@ class Moderazione(commands.Cog):
                         ).set_footer(text=f'Questo è il caso numero {case}.')
                         await vincylog.send(embed = embed)
                 else:
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                    with open(casefile,'r') as file:
                         counter = int(file.read())+1
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                    with open(casefile,'w') as file:
                         file.write(str(counter))
-                    case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                    case = open(casefile, 'r').read()
                     await member.kick(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - {reason}")
                     embed = discord.Embed(
                         title = "Kick",
@@ -129,11 +131,11 @@ class Moderazione(commands.Cog):
                 await ctx.send(f'{error} | Non puoi bannare te stesso!')
             else:
                 if reason == None:
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                    with open(casefile,'r') as file:
                        counter = int(file.read())+1
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                    with open(casefile,'w') as file:
                        file.write(str(counter))
-                    case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                    case = open(casefile, 'r').read()
                     await member.ban(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo dato.")
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention}, questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC')
                     embed = discord.Embed(
@@ -153,11 +155,11 @@ class Moderazione(commands.Cog):
                         ).set_footer(text=f'Questo è il caso numero {case}.')
                         await vincylog.send(embed = embed)
                 else:
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                    with open(casefile,'r') as file:
                        counter = int(file.read())+1
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                    with open(casefile,'w') as file:
                        file.write(str(counter))
-                    case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                    case = open(casefile, 'r').read()
                     await member.ban(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - {reason}")
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention} per motivo \"{reason}\", questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC')
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
@@ -190,11 +192,11 @@ class Moderazione(commands.Cog):
 
                 if (user.name, user.discriminator) == (member.name, member.discriminator):
 				
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                    with open(casefile,'r') as file:
                        counter = int(file.read())+1
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                    with open(casefile,'w') as file:
                        file.write(str(counter))
-                    case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                    case = open(casefile, 'r').read()
                     await ctx.guild.unban(user)
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato unbannato da {ctx.message.author.mention}')
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
@@ -225,11 +227,11 @@ class Moderazione(commands.Cog):
                 await ctx.send(f'{error} | Non puoi mutare te stesso!', delete_after = 5.0)
             else:
                 if reason == None:
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                    with open(casefile,'r') as file:
                         counter = int(file.read())+1
-                    with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                    with open(casefile,'w') as file:
                     	file.write(str(counter))
-                    case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                    case = open(casefile, 'r').read()
                     role = discord.utils.get(ctx.guild.roles, name = "Mutato")
                     if role == None:
                         role = await ctx.guild.create_role(name = "Mutato")
@@ -285,11 +287,11 @@ class Moderazione(commands.Cog):
         else:
             role = discord.utils.get(ctx.guild.roles, name = "Mutato")
             if role in member.roles:
-                with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','r') as file:
+                with open(casefile,'r') as file:
                     counter = int(file.read())+1
-                with open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt','w') as file:
+                with open(casefile,'w') as file:
                     file.write(str(counter))
-                case = open('plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt', 'r').read()
+                case = open(casefile, 'r').read()
                 await member.remove_roles(role)
                 await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato smutato')
                 vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
