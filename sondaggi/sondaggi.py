@@ -12,7 +12,7 @@ def to_emoji(c):
     return chr(base + c)
 
 
-class Polls(commands.Cog):
+class Sondaggi(commands.Cog):
     """Poll voting system."""
 
     def __init__(self, bot):
@@ -22,7 +22,7 @@ class Polls(commands.Cog):
     @commands.group(name="poll", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def poll(self, ctx: commands.Context):
-        """Easily create Polls.
+        """Crea facilmente sondaggi.
         """
         await ctx.send_help(ctx.command)
         
@@ -30,14 +30,14 @@ class Polls(commands.Cog):
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def start(self, ctx, *, question):
-        """Interactively creates a poll with the following question.
+        """Crea interattivamente un sondaggio con quella domanda.
 
-        To vote, use reactions!
+        Per votare, usa le reazioni!
         """
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
             return await ctx.send(
-                "Need Add Reactions permissions."
+                "Ho bisogno del permesso Aggiungere reazioni."
             )
 
         # a list of messages to delete when we're all done
@@ -54,7 +54,7 @@ class Polls(commands.Cog):
         for i in range(20):
             messages.append(
                 await ctx.send(
-                    f"Say a Poll option or {ctx.prefix}done to publish the Poll."
+                    f"Dici un'opzione del sondaggio o {ctx.prefix}done per pubblicare il sondaggio."
                 )
             )
 
@@ -85,31 +85,31 @@ class Polls(commands.Cog):
     @start.error
     async def poll_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            return await ctx.send("Missing the question.")
+            return await ctx.send("Domanda mancante.")
 
     @poll.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def quick(self, ctx, *questions_and_choices: str):
-        """Makes a poll quickly.
-        The first argument is the question and the rest are the choices.
-        for example: `?poll quick "Green or Light Green?" Green "Light Green"`
+        """Crea un sondaggio velocemente.
+        Il primo argomento è la domanda e il resto sono le scelte.
+        per esempio: `?poll quick "Verde o verde chiaro?" Verde "Verde chiaro"`
         
-        or it can be a simple yes or no poll, like:
-        `?poll quick "Do you watch Anime?"`
+        oppure può essere un semplice poll sì e no, come:
+        `?poll quick "Guardate gli anime?"`
         """
 
         if len(questions_and_choices) == 0:
-            return await ctx.send("You need to specify a question.")
+            return await ctx.send("Devi specificare una domanda.")
         elif len(questions_and_choices) == 2:
-            return await ctx.send("You need at least 2 choices.")
+            return await ctx.send("Hai bisogno di due scelte.")
         elif len(questions_and_choices) > 21:
-            return await ctx.send("You can only have up to 20 choices.")
+            return await ctx.send("Puoi solo avere fino a venti scelte.")
 
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
             return await ctx.send(
-                "Need Add Reactions permissions."
+                "Ho bisogno del permesso Aggiungere reazioni."
             )
         try:
             await ctx.message.delete()
@@ -137,4 +137,4 @@ class Polls(commands.Cog):
 
         
 def setup(bot):
-    bot.add_cog(Polls(bot))
+    bot.add_cog(Sondaggi(bot))
