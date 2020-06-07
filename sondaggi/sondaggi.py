@@ -13,7 +13,7 @@ def to_emoji(c):
 
 
 class Sondaggi(commands.Cog):
-    """Poll voting system."""
+    """Sistema di voto ai sondaggi."""
 
     def __init__(self, bot):
         self.bot = bot
