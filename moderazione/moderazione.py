@@ -38,8 +38,7 @@ class Moderazione(commands.Cog):
         max_purge = 2000
         if amount >= 1 and amount <= max_purge:
             await ctx.channel.purge(limit = amount + 1)
-            await ctx.send(f'{trash} | Ho eliminato {amount} messaggi!')
-            await ctx.send(embed = embed, delete_after = 5.0)
+            await ctx.send(f'{trash} | Ho eliminato {amount} messaggi!', delete_after=5.0)
             modlog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
             if modlog == None:
                 return
