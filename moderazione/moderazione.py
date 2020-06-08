@@ -3,10 +3,12 @@ from discord.ext import commands
 from core import checks
 from core.models import PermissionLevel
 
+# Counter casi
 counter = 0
 counter = counter + 1
 
-casefile = 'plugins/Vincysuper07/modmail-plugins-2/moderation-master/cases.txt'
+# File per i casi
+casefile = 'plugins/VincyBot07/plugins/moderazione-master/cases.txt'
 
 trash = "🗑️"
 error = "❌"
@@ -21,7 +23,7 @@ class Moderazione(commands.Cog):
         self.errorcolor = 0xFF2B2B
         self.blurple = 0x7289DA
 
-    #On channel create set up mute stuff
+    #Impostare i permessi per i mutati
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel):
         guild = channel.guild
@@ -30,7 +32,7 @@ class Moderazione(commands.Cog):
             role = await guild.create_role(name = "Mutato")
         await channel.set_permissions(role, send_messages = False)
 
-    #Purge command
+    #Comando purge
     @commands.command(aliases = ["clear"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def purge(self, ctx, amount = 10):
@@ -62,7 +64,7 @@ class Moderazione(commands.Cog):
             await ctx.send(f'Non hai il permesso per usare questo comando!', delete_after = 5.0)
             await ctx.message.delete()
 
-    #Kick command
+    #Comando kick
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def kick(self, ctx, member : discord.Member = None, *, reason = None):
@@ -81,6 +83,8 @@ class Moderazione(commands.Cog):
                     case = open(casefile, 'r').read()
                     await member.kick(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo specificato.")
                     await ctx.send(f"{member.name}#{member.discriminator} è stato kickato da {ctx.message.author.mention}, questo è il caso numero {case}.")
+                    messagekick = f"Sei stato kickato da {ctx.guild.name}"
+                    await member.send(messagekick)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -98,12 +102,9 @@ class Moderazione(commands.Cog):
                         file.write(str(counter))
                     case = open(casefile, 'r').read()
                     await member.kick(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - {reason}")
-                    embed = discord.Embed(
-                        title = "Kick",
-                        description = f"{member.mention} è stato kickato da {ctx.message.author.mention} per {reason}.",
-                        color = self.blurple
-                    ).set_footer(text=f'Questo è il caso numero {case}.')
-                    await ctx.send(embed = embed)
+                    await ctx.send(f"{member.name}#{member.discriminator} è stato kickato da {ctx.message.author.mention} per {reason}, questo è il caso numero {case}.")
+                    messagekick = f"Sei stato kickato da {ctx.guild.name} per: {reason}"
+                    await member.send(messagekick)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -120,7 +121,7 @@ class Moderazione(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send(f'{error} | Non hai il permesso per usare quel comando.', delete_after = 5.0)
 
-    #Ban command
+    #Comando ban
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def ban(self, ctx, member : discord.Member = None, *, reason = None):
@@ -139,12 +140,8 @@ class Moderazione(commands.Cog):
                     case = open(casefile, 'r').read()
                     await member.ban(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo dato.")
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention}, questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC')
-                    embed = discord.Embed(
-                        title = "Ban",
-                        description = f"{member.mention} è stato bannato da {ctx.message.author.mention}.",
-                        color = self.blurple
-                    ).set_footer(text=f'Questo è il caso numero {case}.')
-
+                    messageban = f"Sei stato bannato da {ctx.guild.name}"
+                    await member.send(messageban)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -163,6 +160,8 @@ class Moderazione(commands.Cog):
                     case = open(casefile, 'r').read()
                     await member.ban(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - {reason}")
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention} per motivo \"{reason}\", questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC')
+                    messageban = f"Sei stato bannato da {ctx.guild.name} per: {reason}"
+                    await member.send(messageban)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -180,7 +179,7 @@ class Moderazione(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send(f'{error} | Non hai il permesso per usare questo comando', delete_after = 5.0)
 
-    #Unban command
+    #Comando unban
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def unban(self, ctx, *, member : discord.User = None):
@@ -218,7 +217,7 @@ class Moderazione(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send(f'{error} | Non hai il permesso per usare questo comando', delete_after = 5.0)
 
-    #Mute command
+    #Comando mute
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def mute(self, ctx, member : discord.Member = None, *, reason = None):
@@ -242,6 +241,8 @@ class Moderazione(commands.Cog):
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato mutato, questo è il caso numero {case}')
+                    messagemute = f"Sei stato bannato da {ctx.guild.name}"
+                    await member.send(messagemute)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -253,18 +254,20 @@ class Moderazione(commands.Cog):
                         ).set_footer(text=f'Questo è il caso numero {case}.')
                         await vincylog.send(embed = embed)
                 else:
+                    with open(casefile,'r') as file:
+                        counter = int(file.read())+1
+                    with open(casefile,'w') as file:
+                    	file.write(str(counter))
+                    case = open(casefile, 'r').read()
                     role = discord.utils.get(ctx.guild.roles, name = "Mutato")
                     if role == None:
                         role = await ctx.guild.create_role(name = "Mutato")
                         for channel in ctx.guild.text_channels:
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
-                    embed = discord.Embed(
-                        title = "Muto",
-                        description = f"{member.name}#{member.discriminator} è stato mutato da {ctx.message.author.mention} per {reason}",
-                        color = self.blurple
-                    ).set_footer(text=f'Questo è il caso numero {case}.')
-                    await ctx.send(embed = embed)
+                    await ctx.send(f'{member.name}#{member.discriminator} è stato mutato per {reason}, questo è il caso numero {case}'
+                    messagemute = f"Sei stato mutato da {ctx.guild.name} per: {reason}"
+                    await member.send(messagemute)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -281,7 +284,7 @@ class Moderazione(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send(f'{error} | Non hai il permesso per usare quel comando')
 
-    #Unmute command
+    #Comando unmute
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def unmute(self, ctx, member : discord.Member = None):
@@ -316,7 +319,7 @@ class Moderazione(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send(f'{error} | Non hai il permesso per usare questo comando')
 									
-    #Nuke command
+    #Comando nuke
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def nuke(self, ctx):
