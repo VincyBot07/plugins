@@ -3,7 +3,7 @@ from discord.ext import commands
 
 from core.paginator import EmbedPaginatorSession
 
-class ServStatus(commands.Cog):
+class Comandi(commands.Cog):
       def __init__(self, bot):
             self.bot = bot
             
@@ -14,17 +14,7 @@ class ServStatus(commands.Cog):
             role = discord.utils.find(lambda r: r.name == "Membri",ctx.guild.roles)
             await member.add_roles(role)
 
-      @commands.command(aliases=["stato"])
-      async def statomc(self, ctx):
-            """Mostra lo stato del server Minecraft."""
-            response = await self.bot.session.get("http://statomc.vincysuper07.cf/api.php")
-            status = (await response.content.readline()).decode('UTF-8')
-            embed = discord.Embed(title = "Server Minecraft: mc.Vincysuper07.cf", description = f"Al momento il server è {status}")
-            if status == "OFFLINE.":
-                embed.color = discord.Color.red()
-            else:
-                embed.color = discord.Color.green()
-            await ctx.send(embed=embed)
+
             
       @commands.command(aliases=["help"])
       async def comandi(self,ctx):
@@ -51,4 +41,4 @@ class ServStatus(commands.Cog):
             await ctx.send_help()
 
 def setup(bot):
-      bot.add_cog(ServStatus(bot))
+      bot.add_cog(Comandi(bot))
