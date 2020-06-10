@@ -23,16 +23,17 @@ class Tag(commands.Cog):
     @tags.command()
     async def add(self, ctx: commands.Context, name: str, *, content: str):
         """
-        Make a new tag
+        Crea un nuovo tag
         """
         if (await self.find_db(name=name)) is not None:
             await ctx.send(f":x: | Un tag con il nome `{name}` esiste già!")
             return
         else:
+            ctx.message.content = content
             await self.db.insert_one(
                 {
                     "name": name,
-                    "content": content,
+                    "content": ctx.message.clean_content,
                     "createdAt": datetime.utcnow(),
                     "updatedAt": datetime.utcnow(),
                     "author": ctx.author.id,
@@ -163,7 +164,7 @@ class Tag(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        if not msg.content.startswith(self.bot.prefix):
+        if not msg.content.startswith(self.bot.prefix) or msg.author.bot:
             return
         content = msg.content.replace(self.bot.prefix, "")
         names = content.split(" ")
