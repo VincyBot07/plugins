@@ -51,7 +51,7 @@ class Tag(commands.Cog):
         """
         Modifica un tag esistente
 
-        Solo il proprietario del tag o l'utente con il permesso ''Gestire i server'' può utilizzare questo comando
+        Solo il proprietario del tag o l'utente con il permesso ''Gestire il server'' può utilizzare questo comando
         """
         tag = await self.find_db(name=name)
 
@@ -59,6 +59,7 @@ class Tag(commands.Cog):
             await ctx.send(f":x: | Non esiste alcun tag con il nome `{name}`")
             return
         else:
+            ctx.message.content = content
             member: discord.Member = ctx.author
             if ctx.author.id == tag["author"] or member.guild_permissions.manage_guild:
                 await self.db.find_one_and_update(
