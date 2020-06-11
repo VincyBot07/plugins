@@ -50,7 +50,7 @@ class Tag(commands.Cog):
                 title='Successo',
                 description=f"Il tag `{name}` è stato creato con successo!",
                 color=green,
-            ).set_footer(text=f'Provalo con {ctx.prefix}{name}!')
+            ).set_footer(text=f'Provalo con {ctx.prefix}{name}!'))
             return
 
     @tags.command()
