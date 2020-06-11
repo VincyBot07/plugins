@@ -63,7 +63,7 @@ class Tag(commands.Cog):
         tag = await self.find_db(name=name)
 
         if tag is None:
-            await ctx.send(embed=discord.Embed(title='Errore', description=f"Non esiste alcun tag con il nome `{name}`", color=red).set_footer(text='Devi crearlo tu!')
+            await ctx.send(embed=discord.Embed(title='Errore', description=f"Non esiste alcun tag con il nome `{name}`", color=red).set_footer(text='Devi crearlo tu!'))
             return
         else:
             ctx.message.content = content
