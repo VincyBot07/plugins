@@ -78,7 +78,7 @@ class Tag(commands.Cog):
                     title='Successo',    
                     description=f"Il tag `{name}` è stato modificato con successo!",
                     color=green,
-                )
+                ))
             else:
                 await ctx.send(embed=discord.Embed(title='Errore', description="Non hai il permesso per modificare quel tag", color=error).set_footer(text='Devi essere il proprietario del tag altrimenti devi avere il permesso "Gestire server"!'))
 
