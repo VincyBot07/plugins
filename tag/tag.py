@@ -134,7 +134,7 @@ class Tag(commands.Cog):
                     title='Successo',
                     description=f"Adesso il proprietario del tag `{name}` è `{ctx.author.name}#{ctx.author.discriminator}`",
                     color=error,
-                )
+                ))
 
     @tags.command()
     async def info(self, ctx: commands.Context, name: str):
@@ -144,7 +144,7 @@ class Tag(commands.Cog):
         tag = await self.find_db(name=name)
 
         if tag is None:
-            await ctx.send(embed=discord.Embed(title='Errore', description=f"Il tag `{name}` non è stato trovato.", color=error).set_footer(text='Devi prima crearlo!')
+            await ctx.send(embed=discord.Embed(title='Errore', description=f"Il tag `{name}` non è stato trovato.", color=error).set_footer(text='Devi prima crearlo!'))
         else:
             user: discord.User = await self.bot.fetch_user(tag["author"])
             embed = discord.Embed()
@@ -168,7 +168,7 @@ class Tag(commands.Cog):
         """
         tag = await self.find_db(name=name)
         if tag is None:
-            await ctx.send(embed=discord.Embed(title='Errore', decscription=f":x: | Il tag {name} non è stato trovato.", color=red)
+            await ctx.send(embed=discord.Embed(title='Errore', description=f":x: | Il tag {name} non è stato trovato.", color=red))
             return
         else:
             await ctx.send(tag["content"])
