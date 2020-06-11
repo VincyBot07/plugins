@@ -31,7 +31,7 @@ class Tag(commands.Cog):
         Crea un nuovo tag
         """
         if (await self.find_db(name=name)) is not None:
-            await ctx.send(embed=discord.Embed(title='Errore', description=f"Un tag con il nome `{name}` esiste già!", color=red).set_footer(text='Prova a creare un tag con un nome diverso!')
+            await ctx.send(embed=discord.Embed(title='Errore', description=f"Un tag con il nome `{name}` esiste già!", color=red).set_footer(text='Prova a creare un tag con un nome diverso!'))
             return
         else:
             ctx.message.content = content
