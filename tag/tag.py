@@ -64,7 +64,7 @@ class Tag(commands.Cog):
             if ctx.author.id == tag["author"] or member.guild_permissions.manage_guild:
                 await self.db.find_one_and_update(
                     {"name": name},
-                    {"$set": {"content": content, "updatedAt": datetime.utcnow()}},
+                    {"$set": {"content": ctx.message.clean_content, "updatedAt": datetime.utcnow()}},
                 )
 
                 await ctx.send(
