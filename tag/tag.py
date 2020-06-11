@@ -105,7 +105,7 @@ class Tag(commands.Cog):
                     color=green,
                 ))
             else:
-                await ctx.send(embed=discord.Embed(title='Errore', description="Non hai il permesso per eliminare quel tag", color=error).set_footer(text='Devi essere il proprietario altrimenti devi avere il permesso "Gestire server" per eliminarlo!')
+                await ctx.send(embed=discord.Embed(title='Errore', description="Non hai il permesso per eliminare quel tag", color=error).set_footer(text='Devi essere il proprietario altrimenti devi avere il permesso "Gestire server" per eliminarlo!'))
 
     @tags.command()
     async def claim(self, ctx: commands.Context, name: str):
