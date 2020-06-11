@@ -124,7 +124,6 @@ class Tag(commands.Cog):
                     description=f"Il proprietario del tag è ancora nel server `{member.name}#{member.discriminator}`",
                     color=error
                 ).set_footer(text='Il proprietario deve uscire dal server')
-                return
             else:
                 await self.db.find_one_and_update(
                     {"name": name},
