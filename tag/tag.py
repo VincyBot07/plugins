@@ -94,9 +94,9 @@ class Tag(commands.Cog):
             await ctx.send(embed=discord.Embed(title='Errore', description=f"Non è stato trovato alcun tag con il nome `{name}`.", color=error).set_footer(text='Non c\'è bisogno di eliminarlo!'))
         else:
             if (
-                ctx.author.id == tag["author"]
+                ctx.author.id == tag["author"]):
 
-):
+
                 await self.db.delete_one({"name": name})
 
                 await ctx.send(embed=discord.Embed(
