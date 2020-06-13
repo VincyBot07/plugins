@@ -87,7 +87,7 @@ class Tag(commands.Cog):
         """
         Elimina un tag.
 
-       Solo il proprietario del tag o l'utente con autorizzazioni Manage Server può utilizzare questo comando.
+       Solo il proprietario del tag può eliminarlo.
         """
         tag = await self.find_db(name=name)
         if tag is None:
@@ -95,8 +95,8 @@ class Tag(commands.Cog):
         else:
             if (
                 ctx.author.id == tag["author"]
-                or ctx.author.guild_permissions.manage_guild
-            ):
+
+):
                 await self.db.delete_one({"name": name})
 
                 await ctx.send(embed=discord.Embed(
