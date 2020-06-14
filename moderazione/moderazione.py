@@ -75,6 +75,7 @@ class Moderazione(commands.Cog):
             if member.id == ctx.message.author.id:
                 await ctx.send('{error} | Non puoi kickare te stesso!')
             else:
+                dm = await member.create_dm()
                 if reason == None:
                     with open(casefile,'r') as file:
                        counter = int(file.read())+1
@@ -84,7 +85,7 @@ class Moderazione(commands.Cog):
                     await member.kick(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo specificato.")
                     await ctx.send(f"{member.name}#{member.discriminator} è stato kickato da {ctx.message.author.mention}, questo è il caso numero {case}.")
                     messagekick = f"Sei stato kickato da {ctx.guild.name}"
-                    await member.send(messagekick)
+                    await dm.send(messagekick)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -103,8 +104,8 @@ class Moderazione(commands.Cog):
                     case = open(casefile, 'r').read()
                     await member.kick(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - {reason}")
                     await ctx.send(f"{member.name}#{member.discriminator} è stato kickato da {ctx.message.author.mention} per {reason}, questo è il caso numero {case}.")
-                    messagekick = f"Sei stato kickato da {ctx.guild.name} per: {reason}"
-                    await member.send(messagekick)
+                    messagekick2 = f"Sei stato kickato da {ctx.guild.name} per: {reason}"
+                    await dm.send(messagekick2)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -132,6 +133,7 @@ class Moderazione(commands.Cog):
             if member.id == ctx.message.author.id:
                 await ctx.send(f'{error} | Non puoi bannare te stesso!')
             else:
+                dm = await member.create_dm()
                 if reason == None:
                     with open(casefile,'r') as file:
                        counter = int(file.read())+1
@@ -141,7 +143,7 @@ class Moderazione(commands.Cog):
                     await member.ban(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo dato.")
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention}, questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC')
                     messageban = f"Sei stato bannato da {ctx.guild.name}"
-                    await member.send(messageban)
+                    await dm.send(messageban)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -160,8 +162,8 @@ class Moderazione(commands.Cog):
                     case = open(casefile, 'r').read()
                     await member.ban(reason = f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - {reason}")
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention} per motivo \"{reason}\", questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC')
-                    messageban = f"Sei stato bannato da {ctx.guild.name} per: {reason}"
-                    await member.send(messageban)
+                    messageban2 = f"Sei stato bannato da {ctx.guild.name} per: {reason}"
+                    await dm.send(messageban2)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -241,8 +243,7 @@ class Moderazione(commands.Cog):
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
                     await ctx.send(f'{check} | {member.name}#{member.discriminator} è stato mutato, questo è il caso numero {case}')
-                    messagemute = f"Sei stato bannato da {ctx.guild.name}"
-                    await member.send(messagemute)
+                    await member.send(f"Sei stato mutato da {ctx.guild.name}")
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
@@ -265,9 +266,8 @@ class Moderazione(commands.Cog):
                         for channel in ctx.guild.text_channels:
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
-                    await ctx.send(f'{member.name}#{member.discriminator} è stato mutato per {reason}, questo è il caso numero {case}'
-                    messagemute = f"Sei stato mutato da {ctx.guild.name} per: {reason}"
-                    await member.send(messagemute)
+                    await ctx.send(f'{member.name}#{member.discriminator} è stato mutato per {reason}, questo è il caso numero {case}')
+                    await member.send(f"Sei stato mutato in {ctx.guild.name} per: {reason}")
                     vincylog = discord.utils.get(ctx.guild.text_channels, name = "vincylog")
                     if vincylog == None:
                         return
