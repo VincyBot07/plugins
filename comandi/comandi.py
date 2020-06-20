@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from core.models import getLogger, PermissionLevel
 
 from core.paginator import EmbedPaginatorSession
 
@@ -10,6 +11,7 @@ class Comandi(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @checks.has_permissions(PermissionLevel.REGULAR)
     async def accetto(self, ctx):
         """<#595319716344758291>"""
         member = ctx.author
@@ -17,6 +19,7 @@ class Comandi(commands.Cog):
         await member.add_roles(role)
 
     @commands.command(aliases=["help"])
+    @checks.has_permissions(PermissionLevel.REGULAR)
     #async def comandi(self, ctx)
     async def comandi(self, cog, *, no_cog=False, context):
         """Mostra questo messaggio"""
@@ -290,6 +293,7 @@ class Comandi(commands.Cog):
         #await session.run()
 
     @commands.command(aliases=["helpmod", "helpm", "hmod", "hadmin", "helpa", "hm"])
+    @checks.has_permissions(PermissionLevel.MODERATOR)
     async def helpadmin(self, ctx):
         await ctx.send_help()
 
