@@ -18,7 +18,7 @@ class Comandi(commands.Cog):
 
     @commands.command(aliases=["help"])
     #async def comandi(self, ctx)
-    async def comandi(self, cog, *, no_cog=False):
+    async def comandi(self, cog, *, no_cog=False, context = ctx):
         """Mostra questo messaggio"""
         bot = self.context.bot
         prefix = self.clean_prefix
