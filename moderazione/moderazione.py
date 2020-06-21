@@ -18,8 +18,8 @@ checkmark = check
 
 
 class Moderazione(commands.Cog):
+    """Comandi per moderare il server."""
     def __init__(self, bot):
-        """Comandi per moderare il server."""
         self.bot = bot
         self.errorcolor = 0xFF2B2B
         self.blurple = 0x7289DA
