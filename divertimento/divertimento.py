@@ -1,9 +1,8 @@
 import logging
 from enum import Enum
-from random import randint,choice
+from random import randint, choice
 import discord
 from discord.ext import commands
-from dadjokes import Dadjoke
 from core import checks
 import box
 import json
@@ -40,10 +39,12 @@ def escape(text: str, *, mass_mentions: bool = False, formatting: bool = False) 
         text = text.replace("`", "\\`").replace("*", "\\*").replace("_", "\\_").replace("~", "\\~")
     return text
 
+
 class RPS(Enum):
     sasso = "\N{MOYAI}"
     carta = "\N{PAGE FACING UP}"
     forbici = "\N{BLACK SCISSORS}"
+
 
 class RPSParser:
     def __init__(self, argument):
@@ -56,9 +57,11 @@ class RPSParser:
             self.choice = RPS.forbici
         else:
             self.choice = None
+
+
 class Divertimento(Cog):
     """Qualche comando Divertente"""
-  
+
     ball = [
         "Come vedo, sì",
         "È certo",
@@ -80,59 +83,65 @@ class Divertimento(Cog):
         "Le mie sorgenti dicono no",
         "A vista non è cosi buono",
         "Molto dubbioso",
-        "testù, testù, testù testù! testù testù testù"
+        "testù, testù, testù testù! testù testù testù",
     ]
-    def __init__(self,bot):
+
+    def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        #self.db = bot.plugin_db.get_partition(self)
-     
+        # self.db = bot.plugin_db.get_partition(self)
+
     @commands.command(name="inspirobot", aliases=["inspiro"])
     async def _inspirobot(self, ctx):
-        """API su http://inspirobot.me"""
+        """Manda un immagine di InspiroBot a caso.
+        
+        API su http://inspirobot.me"""
         response = await self.bot.session.get("https://inspirobot.me/api?generate=true")
-        gen = (await response.content.readline()).decode('UTF-8')
+        gen = (await response.content.readline()).decode("UTF-8")
         color = 0x1E9705
-        e = discord.Embed(title = "InspiroBot", color=color)
+        e = discord.Embed(title="InspiroBot", color=color)
         e.set_image(url=f"{gen}")
         await ctx.send(embed=e)
-   
+
     @commands.command()
     async def choose(self, ctx, *choices):
-        """Choose between multiple options.
+        """Scegli tra multiple opzioni.
 
-        To denote options which include whitespace, you should use
-        double quotes.
+        Per inserire opzioni che contengono uno spazio,
+        devi inserire le virgolette.
         """
         choices = [escape(c, mass_mentions=True) for c in choices]
         if len(choices) < 2:
             await ctx.send(_("Not enough options to pick from."))
         else:
             await ctx.send(choice(choices))
-            
+
     @commands.command()
     async def roll(self, ctx, number: int = 6):
-        """Roll a random number.
+        """Sceglie un numero a caso.
 
-        The result will be between 1 and `<number>`.
-
-        `<number>` defaults to 6.
+        Il risultato sarà tra 1 e `<numero>`, che,
+        per opzione predefinita, è 6.
         """
         author = ctx.author
         if number > 1:
             n = randint(1, number)
             await ctx.send("{author.mention} :game_die: {n} :game_die:".format(author=author, n=n))
         else:
-            await ctx.send(_("{author.mention} Maybe higher than 1? ;P").format(author=author))
-            
+            await ctx.send(
+                _(
+                    "{author.mention} Non è che dovresti mettere un numero più grande di 1? ;P"
+                ).format(author=author)
+            )
+
     @commands.command()
-    async def flip(self,ctx):
+    async def flip(self, ctx):
         """Flip a coin"""
-        answer = choice(["HEADS!*","TAILS!*"])
-        await ctx.send(f"*Flips a coin and...{answer}")
-        
+        answer = choice(["testa!", "croce!"])
+        await ctx.send(f"*È uscito {answer}")
+
     @commands.command()
-    async def rps(self,ctx,your_choice:RPSParser):
+    async def rps(self, ctx, your_choice: RPSParser):
         """Gioca a Sasso, Carta, Forbici"""
         author = ctx.author
         player_choice = your_choice.choice
@@ -157,46 +166,50 @@ class Divertimento(Cog):
             await ctx.send(f"{bot_choice.value} Hai perso, {author.mention}!")
         else:
             await ctx.send(f"{bot_choice.value} Siamo pari, {author.mention}!")
-    @commands.command(name="8ball",aliases=["8"])
-    async def _8ball(self, ctx, *, question: str):
-        """Ask 8 ball a question.
 
-        Question must end with a question mark.
+    @commands.command(name="8ball", aliases=["8"])
+    async def _8ball(self, ctx, *, question: str):
+        """Chiedi una domanda alla 8ball.
+
+        Le domande devono finire con un punto interrogativo.
         """
         if question.endswith("?") and question != "?":
-            await ctx.send((choice(self.ball) if question != "testù?" else "testù, testù, testù testù! testù testù testù"))
+            await ctx.send(
+                (
+                    choice(self.ball)
+                    if question != "testù?"
+                    else "testù, testù, testù testù! testù testù testù"
+                )
+            )
         else:
-            await ctx.send("Quella non sembra una domanda.")
+            await ctx.send("Quella non sembra essere una domanda.")
 
-    @commands.command(aliases=["badjoke"])
-    async def dadjoke(self,ctx):
-        """Gives a random Dadjoke"""
-        x = Dadjoke()
-        await ctx.send(x.joke)
-        
     @commands.command()
     async def lmgtfy(self, ctx, *, search_terms: str):
-        """Create a lmgtfy link."""
+        """Crea un link Lmgtfy."""
         search_terms = escape(
             search_terms.replace("+", "%2B").replace(" ", "+"), mass_mentions=True
         )
         await ctx.send("<https://lmgtfy.com/?q={}>".format(search_terms))
-        
+
     @commands.command()
-    async def say(self,ctx,* ,message):
+    async def say(self, ctx, *, message):
         """Fai dire qualcosa al bot"""
-        msg = escape(message,mass_mentions=True)
+        msg = escape(message, mass_mentions=True)
         await ctx.send(msg)
+
     @commands.command()
     async def reverse(self, ctx, *, text):
         """!otseT out li etrevnI"""
-        text =  escape("".join(list(reversed(str(text)))),mass_mentions=True)
+        text = escape("".join(list(reversed(str(text)))), mass_mentions=True)
         await ctx.send(text)
-        
+
     @commands.command()
     async def meme(self, ctx):
-        """Da un meme a caso. La roba della vita."""
-        r = await self.bot.session.get("https://www.reddit.com/r/dankmemes/top.json?sort=top&t=day&limit=500")
+        """Da un meme a caso."""
+        r = await self.bot.session.get(
+            "https://www.reddit.com/r/dankmemes/top.json?sort=top&t=day&limit=500"
+        )
         r = await r.json()
         r = box.Box(r)
         data = choice(r.data.children).data
@@ -209,6 +222,7 @@ class Divertimento(Cog):
         em.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
         em.set_footer(text=f"👍{upvotes} | 👎 {downvotes}")
         await ctx.send(embed=em)
+
     @commands.command()
     async def emojify(self, ctx, *, text: str):
         """Converte il testo in emoji!"""
@@ -220,9 +234,9 @@ class Divertimento(Cog):
         for char in text:
             if char == " ":
                 to_send += " "
-            elif char.lower() in 'qwertyuiopasdfghjklzxcvbnm':
+            elif char.lower() in "qwertyuiopasdfghjklzxcvbnm":
                 to_send += f":regional_indicator_{char.lower()}:  "
-            elif char in '1234567890':
+            elif char in "1234567890":
                 numbers = {
                     "1": "one",
                     "2": "two",
@@ -233,32 +247,86 @@ class Divertimento(Cog):
                     "7": "seven",
                     "8": "eight",
                     "9": "nine",
-                    "0": "zero"
+                    "0": "zero",
                 }
                 to_send += f":{numbers[char]}: "
             else:
-                return await ctx.send("I caratteri devono essere una lettera o un numero.  Tutto il resto non è supportato.")
+                return await ctx.send(
+                    "I caratteri devono essere una lettera o un numero.  Tutto il resto non è supportato."
+                )
         if len(to_send) > 2000:
             return await ctx.send("L'emoji è troppo grande per adattarsi a un messaggio!")
         await ctx.send(to_send)
-        
-    @commands.command()
+
+    @commands.command(aliases=["roast"])
     @commands.guild_only()
-    async def roast(self, ctx,*, user: discord.Member = None):
-        '''Insulterò qualcuno per te!'''
-   
-        msg = f"Hey, {user.mention}! " if user is not None else ""
-        roasts = ["Ti darei uno sguardo cattivo ma ne hai già uno.", "Se hai due facce, almeno una rendila carina.", "Sembra che la tua faccia abbia preso fuoco e qualcuno abbia cercato di spegnerlo con un martello. LOL!", "Sembra che la tua faccia abbia preso fuoco e qualcuno abbia cercato di spegnerlo con un martello.", "Mi piacerebbe vedere le cose dal tuo punto di vista, ma non riesco ad avere la testa così in alto nel sedere.", "Gli scienziati affermano che l'universo è composto da neutroni, protoni ed elettroni. Si sono dimenticati di menzionare i deficienti.", "Perché è accettabile per te essere un idiota, ma non per me segnalarlo?", "Solo perché ne hai uno non significa che devi comportarti come tale.", "Un giorno andrai lontano... e spero che tu rimanga lì.", "Errore, riprova... aspetta,  sei tu l'errore!", "No, quei pantaloni non ti fanno sembrare più grasso, come potrebbero?", "Risparmia il fiato: ne avrai bisogno per far saltare il tuo appuntamento.", "Se vuoi davvero sapere degli errori, dovresti chiedere ai tuoi genitori.", " Qualunque sia il tipo di look che stavi cercando, ti sei perso.", "Ehi, hai qualcosa sul mento ... no, la terza in basso.", "Non so cosa ti rende così stupido, ma funziona davvero.", "Sei la prova che l'evoluzione può andare al contrario.", "I cervelli non sono tutto. Nel tuo caso non sono niente.", "Ti ho pensato oggi. Mi ha ricordato di portare fuori la spazzatura.", "Sei così brutto quando ti guardi allo specchio, il tuo riflesso distoglie lo sguardo.", "Veloce - controlla il tuo viso! Ho appena trovato il tuo naso nei miei affari.", "È meglio lasciare che qualcuno pensi che sei stupido piuttosto che aprire la bocca e dimostrarlo.", "Sei una persona così bella, intelligente, meravigliosa. Oh mi dispiace, pensavo che avessimo una competizione di bugie.", "Ti darei uno schiaffo ma non voglio far sembrare la tua faccia migliore.", "Hai il diritto di tacere perché qualunque cosa tu dica probabilmente sarà comunque stupida."]
+    async def insult(self, ctx, *, user: discord.Member = None):
+        """Insulterò qualcuno per te!"""
+
+        msg = f"{user.mention}\n\n " if user is not None else ""
+        roasts = [
+            "Ti darei uno sguardo cattivo ma ne hai già uno.",
+            "Se hai due facce, almeno una rendila carina.",
+            "Sembra che la tua faccia abbia preso fuoco e qualcuno abbia cercato di spegnerlo con un martello.",
+            "Mi piacerebbe vedere le cose dal tuo punto di vista, ma non riesco ad avere la testa così in alto nel sedere.",
+            "Perché è accettabile per te essere un idiota, ma non per me segnalarlo?",
+            "Solo perché ne hai uno non significa che devi comportarti come tale.",
+            "Un giorno andrai lontano... e spero che tu rimanga lì.",
+            "Errore, riprova... aspetta,  sei tu l'errore!",
+            "No, quei pantaloni non ti fanno sembrare più grasso, come potrebbero?",
+            "Risparmia il fiato: ne avrai bisogno per far saltare il tuo appuntamento.",
+            "Se vuoi davvero sapere degli errori, dovresti chiedere ai tuoi genitori.",
+            "Qualunque sia il tipo di look che stavi cercando, ti sei perso.",
+            "Non so cosa ti rende così stupido, ma funziona davvero.",
+            "Sei la prova che l'evoluzione può andare al contrario.",
+            "I cervelli non sono tutto. Nel tuo caso non sono niente.",
+            "Ti ho pensato oggi. Mi hai ricordato di portare fuori la spazzatura.",
+            "Sei così brutto quando ti guardi allo specchio, il tuo riflesso distoglie lo sguardo.",
+            "Veloce - controlla il tuo viso! Ho appena trovato il tuo naso nei miei affari.",
+            "È meglio lasciare che qualcuno pensi che sei stupido piuttosto che aprire la bocca e dimostrarlo.",
+            "Sei una persona così bella, intelligente, meravigliosa. Oh mi dispiace, pensavo che avessimo una competizione di bugie.",
+            "Ti darei uno schiaffo ma non voglio far sembrare la tua faccia migliore.",
+            "Hai il diritto di tacere perché qualunque cosa tu dica probabilmente sarà comunque stupida.",
+        ]
         if str(user.id) == str(ctx.bot.user.id):
-            return await ctx.send(f"Uh?!! Bel tentativo! Non insulterò me stesso. Invece ora insulto te!\n\n {ctx.author.mention} {choice(roasts)}")
+            return await ctx.send(
+                f"Uh?!! Bel tentativo! Non insulterò me stesso. Invece ora insulto te!\n\n {ctx.author.mention}\n{choice(roasts)}"
+            )
         await ctx.send(f"{msg} {choice(roasts)}")
 
-    @commands.command(aliases=['sc'])
+    @commands.command(aliases=["sc"])
     @commands.guild_only()
-    async def smallcaps(self,ctx,*,message):
+    async def smallcaps(self, ctx, *, message):
         """ᴄᴏɴᴠᴇʀᴛᴇ ɪʟ ᴛᴜᴏ ᴛᴇꜱᴛᴏ ᴀ ᴜɴ ᴍᴀɪᴜꜱᴄᴏʟᴏ ᴘɪᴄᴄᴏʟᴏ!!"""
-        alpha = list(string.ascii_lowercase)     
-        converter = ['ᴀ', 'ʙ', 'ᴄ', 'ᴅ', 'ᴇ', 'ꜰ', 'ɢ', 'ʜ', 'ɪ', 'ᴊ', 'ᴋ', 'ʟ', 'ᴍ', 'ɴ', 'ᴏ', 'ᴘ', 'ǫ', 'ʀ', 'ꜱ', 'ᴛ', 'ᴜ', 'ᴠ', 'ᴡ', 'x', 'ʏ', 'ᴢ']
+        alpha = list(string.ascii_lowercase)
+        converter = [
+            "ᴀ",
+            "ʙ",
+            "ᴄ",
+            "ᴅ",
+            "ᴇ",
+            "ꜰ",
+            "ɢ",
+            "ʜ",
+            "ɪ",
+            "ᴊ",
+            "ᴋ",
+            "ʟ",
+            "ᴍ",
+            "ɴ",
+            "ᴏ",
+            "ᴘ",
+            "ǫ",
+            "ʀ",
+            "ꜱ",
+            "ᴛ",
+            "ᴜ",
+            "ᴠ",
+            "ᴡ",
+            "x",
+            "ʏ",
+            "ᴢ",
+        ]
         new = ""
         exact = message.lower()
         for letter in exact:
@@ -268,20 +336,43 @@ class Divertimento(Cog):
             else:
                 new += letter
         await ctx.send(new)
-    
-            
+
     @commands.command()
-    async def cringe(self,ctx,* ,message):
+    async def cringe(self, ctx, *, message):
         """rEnDe iL TeStO CrInGe!!"""
-        text_list = list(message) #convert string to list to be able to edit it
-        for i in range(0,len(message)):
+        text_list = list(message)  # convert string to list to be able to edit it
+        for i in range(0, len(message)):
             if i % 2 == 0:
-                text_list[i]= text_list[i].lower()
+                text_list[i] = text_list[i].lower()
             else:
-                text_list[i]=text_list[i].upper()
-        message ="".join(text_list) #convert list back to string(message) to print it as a word
+                text_list[i] = text_list[i].upper()
+        message = "".join(text_list)  # convert list back to string(message) to print it as a word
         await ctx.send(message)
 
-      
+    @commands.command(aliases=["ntxt"])
+    async def novotext(self, ctx: commands.Context, msg1, *, msg2=None):
+        """Modifica il testo in TestoTESTO testo.
+        
+        Se inserisci 2 parole (ad es. "novo bot"),
+        uscirà "NovoBOT bot".
+        Invece, se ne inserisci una (ad es. novo),
+        uscirà invece "NovoNOVO novo".
+        NovoBOT bot è nato in questi due server:
+        """
+        if msg2 != None:
+            novo = str(msg1)
+            bot = str(msg2)
+            Novo = novo.capitalize()
+            BOT = bot.upper()
+            bot = BOT.lower()
+            await ctx.send(f"{Novo}{BOT} {bot}")
+        else:
+            novo = str(msg1)
+            Novo = novo.capitalize()
+            NOVO = novo.upper()
+            novo = NOVO.lower()
+            await ctx.send(f"{Novo}{NOVO} {novo}")
+
+
 def setup(bot):
     bot.add_cog(Divertimento(bot))
