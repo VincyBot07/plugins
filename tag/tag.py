@@ -12,8 +12,8 @@ error = red
 success = green
 
 class Tag(commands.Cog):
+    """Crea tag per il tuo server!"""
     def __init__(self, bot):
-        """Crea tag per il tuo server!"""
         self.bot: discord.Client = bot
         self.db = bot.plugin_db.get_partition(self)
 
