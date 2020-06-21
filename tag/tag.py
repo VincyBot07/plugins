@@ -13,6 +13,7 @@ success = green
 
 class Tag(commands.Cog):
     def __init__(self, bot):
+        """Crea tag per il tuo server!"""
         self.bot: discord.Client = bot
         self.db = bot.plugin_db.get_partition(self)
 
@@ -21,7 +22,7 @@ class Tag(commands.Cog):
     @checks.has_permissions(PermissionLevel.REGULAR)
     async def tags(self, ctx: commands.Context):
         """
-        Crea, Modifica & Gestisci i Tag
+        Crea/modifica/elimina un tag!
         """
         await ctx.send_help(ctx.command)
 
