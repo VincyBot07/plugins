@@ -358,6 +358,7 @@ class Divertimento(Cog):
         Invece, se ne inserisci una (ad es. novo),
         uscirà invece "NovoNOVO novo".
         NovoBOT bot è nato in questi due server:
+        [TechFeed](http://discord.io/TechFeed) e [NovoBot](http://discord.io/NovoBot).
         """
         if msg2 != None:
             novo = str(msg1)
