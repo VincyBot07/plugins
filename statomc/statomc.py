@@ -13,7 +13,7 @@ class StatoMC(commands.Cog):
             """Mostra lo stato del server Minecraft."""
             mc_url = os.getenv("MINECRAFT_SERVER")
             response = requests.get(f'https://api.mcsrvstat.us/2/{mc_url}')
-            status = json.loads(rsp.text)
+            status = json.loads(response.text)
             #print(load["online"])
             online = status["online"]
             players = status["players"]["online"]
