@@ -24,9 +24,10 @@ class StatoMC(commands.Cog):
                 if players == "1":
                     e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **online**. **1** persona sta giocando sul massimo di {max}.", color = discord.Color.green())
                 else:
-                    e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **online**. **{players}** persone stanno giocando sul massimo di {max}.")
-                if players == "0":
-                    e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **online**.")
+                    if players == "0":
+                        e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **online**.")
+                    else:
+                        e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **online**. **{players}** persone stanno giocando sul massimo di {max}.")
                 e.set_footer(text="La versione è {version}.")
             else:
                 e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **offline**.", color=discord.Color.red()).set_footer(text="Non posso sapere la versione, dato che il server è offline.")
