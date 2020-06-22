@@ -33,4 +33,4 @@ class StatoMC(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-      bot.add_cog(Comandi(bot))
+      bot.add_cog(StatoMC(bot))
