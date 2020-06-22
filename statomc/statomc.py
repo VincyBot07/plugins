@@ -30,7 +30,7 @@ class StatoMC(commands.Cog):
                 e.set_footer(text="La versione è {version}.")
             else:
                 e = discord.Embed(title = "Server Minecraft: {mc_url}", description = f"Al momento il server è **offline**.", color=discord.Color.red()).set_footer(text="Non posso sapere la versione, dato che il server è offline.")
-            await ctx.send(embed=embed)
+            await ctx.send(embed=e)
 
 def setup(bot):
       bot.add_cog(StatoMC(bot))
