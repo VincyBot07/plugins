@@ -10,7 +10,8 @@ class StatoMC(commands.Cog):
       @commands.command(aliases=["stato"])
       async def statomc(self, ctx):
             """Mostra lo stato del server Minecraft."""
-            request = await self.bot.session.get(f'https://api.mcsrvstat.us/2/vps.tpop.cf:2203')
+            mc_url = "vps.tpop.cf:2203"
+            request = await self.bot.session.get(f'https://api.mcsrvstat.us/2/{mc_url}')
             response = await request.content.readline()
             status = json.loads(response)
             online = status["online"]
