@@ -352,7 +352,7 @@ class Divertimento(Cog):
         await ctx.send(message)
 
     @commands.command(aliases=["ntxt"])
-    async def novotext(self, ctx: commands.Context, msg1, *, msg2=None):
+    async def novotext(self, ctx: commands.Context, msg1, *, msg2=None, mass_mentions=True):
         """Modifica il testo in TestoTESTO testo.
         
         Se inserisci 2 parole (ad es. "novo bot"),
@@ -368,13 +368,13 @@ class Divertimento(Cog):
             Novo = novo.capitalize()
             BOT = bot.upper()
             bot = BOT.lower()
-            await ctx.send(f"{Novo}{BOT} {bot}", mass_mentions=True)
+            await ctx.send(f"{Novo}{BOT} {bot}")
         else:
             novo = str(msg1)
             Novo = novo.capitalize()
             NOVO = novo.upper()
             novo = NOVO.lower()
-            await ctx.send(f"{Novo}{NOVO} {novo}", mass_mentions=True)
+            await ctx.send(f"{Novo}{NOVO} {novo}")
 
 
 def setup(bot):
