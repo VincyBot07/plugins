@@ -364,7 +364,7 @@ class Divertimento(Cog):
         """
         ntxt1 = [escape(t, mass_mentions=True) for t in msg1]
         ntxt2 = [escape(t, mass_mentions=True) for t in msg2]
-        if msg2 != None:
+        if ntxt2 != None:
             novo = str(msg1)
             bot = str(msg2)
             Novo = novo.capitalize()
