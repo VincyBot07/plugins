@@ -1,34 +1,23 @@
 import discord
 from discord.ext import commands
 
+
 class Regole(commands.Cog):
-        def __init__(self, bot):
-            self.bot = bot
+    def __init__(self, bot):
+        self.bot = bot
+
     @commands.command()
-    async def regole(self,ctx):
+    async def regole(self, ctx):
         embed = discord.Embed(
             title="Regole del server",
             url="https://vincybot07.vincysuper07.cf",
-            description="""
-                1. Non spammare
-                2. Non insultare
-                3. Non avere un nome intaggabile (impossibile da menzionare)
-                4. Non bestemmiare
-                5. Non disturbare i @Moderatori oppure i @Sotto Moderatori oppure gli @Admin
-                6. Non inviare foto NSFW
-                7. Se qualcuno ti da fastidio, tagga @Staff 
-                8.Rispettare gli @Staff
-                9.  Non fare pubblicità al di fuori di #pubblicità (inclusa la pubblicità in privato)
-                10. Certi argomenti possono essere scritti solo nei canali corrispondenti (es. Usate #assistenza **__solo__ per ricevere supporto**
-                11. Niente minimod nel server (es. un membro normale agisce come se fosse un moderatore), lasciate gli @Staff fare il loro lavoro
-                Questo server ha delle regole che __devono__ essere rispettate.
-                """,
+            description="Questo server, come tutti gli altri, ha delle regole che __devono__ essere rispettate.",
             color=0x00FF00,
         )
         embed.add_field(
             name="REGOLA D'ORO!",
             value="""Rispetta, accetta e sii gentile con tutti.
-            Tagga @Staff se vieni molestato. Non reagire."""
+            Tagga @Staff se vieni molestato. Non reagire.""",
         )
         embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf")
         embed.add_field(
@@ -38,7 +27,7 @@ class Regole(commands.Cog):
             Se qualcuno dovesse spammare, verrà kickato.
             Se qualcuno dovesse raidare, avete il consenso di spammare @Staff,
             noi prenderemo i provvedimenti necessari.
-            """
+            """,
         )
         embed.add_field(
             name="2. È vietato insultare e bestemmiare.",
@@ -46,34 +35,33 @@ class Regole(commands.Cog):
             Insulti, bestemmie, drammi e altre cose sono vietate in questo server.
             Se qualcuno dovesse bestemmiare oppure insultare, taggate @Staff.
             È consentito dire parolacce, però, solo fino a un certo punto.
-            """
+            """,
         )
         embed.add_field(
-            name="3. È vietato avere un nome impossibile da menzionare."
+            name="3. È vietato avere un nome impossibile da menzionare.",
             value="""
             In questo server, i nomi devono essere **__tutti__ taggabili**. Quindi,
             un solo nome intaggabile, verrà cambiato in qualcos'altro.
             Se qualcuno dovesse rimettere il nome intaggabile, verrà avvertito, e,
             se necessario, verrà anche mutato!
-            """
+            """,
         )
         embed.add_field(
-            name="4. Non inviare NSFW."
+            name="4. Non inviare NSFW.",
             value="""
             È illegale, sta scritto nei termini di servizio di Discord. [Leggi altro...](http://discord.com/terms)
             Tornando alle regole, l'invio anche di un solo video/immagine NSFW, vale un __ban istantaneo__!
-            """
+            """,
         )
         embed.add_field(
-            name="5. Non fare pubblicità."
+            name="5. Non fare pubblicità.",
             value="""
             La pubblicità al di fuori di #pubblicità vale un __ban istantaneo__!
             La pubblicità in privato è inclusa!
-            """
+            """,
         )
         embed.add_field(
-            name="6. Niente minimod nel server."
-            value="Lasciate gli @Staff fare il loro lavoro."
+            name="6. Niente minimod nel server.", value="Lasciate gli @Staff fare il loro lavoro.",
         )
         embed.add_field(
             name="Nota bene:",
@@ -89,6 +77,7 @@ class Regole(commands.Cog):
         )
         embed.set_footer(text="Rispettale e non verrai bannato!")
         await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Regole(bot))
