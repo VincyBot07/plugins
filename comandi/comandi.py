@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
-staff = "<@&595651372247154729>"
-pubblicita = "<#595326853728960523>"
+
 
 class Regole(commands.Cog):
     def __init__(self, bot):
@@ -18,16 +17,20 @@ class Regole(commands.Cog):
         embed.add_field(
             name="REGOLA D'ORO!",
             value=f"""Rispetta, accetta e sii gentile con tutti.
-            Tagga {staff} se vieni molestato. Non reagire.""",
+            Tagga <@&595651372247154729> se vieni molestato. Non reagire.""",
             inline=False,
         )
-        embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf", icon_url="https://cdn.discordapp.com/attachments/595327251579404298/682915766160588817/img2.png")
+        embed.set_author(
+            name="Vincysuper07",
+            url="https://vincysuper07.cf",
+            icon_url="https://cdn.discordapp.com/attachments/595327251579404298/682915766160588817/img2.png",
+        )
         embed.add_field(
             name="1. È vietato alcun tipo di spam, flood, raid e altri tipi di spam.",
             value=f"""
             Lo spam in questo server è proibito in questo server.
             Se qualcuno dovesse spammare, verrà kickato.
-            Se qualcuno dovesse raidare, avete il consenso di spammare "{staff}",
+            Se qualcuno dovesse raidare, avete il consenso di spammare "<@&595651372247154729>",
             noi prenderemo i provvedimenti necessari.
             """,
             inline=False,
@@ -36,7 +39,7 @@ class Regole(commands.Cog):
             name="2. È vietato insultare e bestemmiare.",
             value=f"""
             Insulti, bestemmie, drammi e altre cose sono vietate in questo server.
-            Se qualcuno dovesse bestemmiare oppure insultare, taggate {staff}.
+            Se qualcuno dovesse bestemmiare oppure insultare, taggate <@&595651372247154729>.
             È consentito dire parolacce, però, solo fino a un certo punto.
             """,
             inline=False,
@@ -62,24 +65,25 @@ class Regole(commands.Cog):
         embed.add_field(
             name="5. Non fare pubblicità.",
             value=f"""
-            La pubblicità al di fuori di {pubblicita} vale un __ban istantaneo__!
+            La pubblicità al di fuori di <#595326853728960523> vale un __ban istantaneo__!
             La pubblicità in privato è inclusa!
             """,
             inline=False,
         )
         embed.add_field(
-            name=f"6. Niente minimod nel server.", value=f"Lasciate gli {staff} fare il loro lavoro.",
+            name=f"6. Niente minimod nel server.",
+            value=f"Lasciate gli <@&595651372247154729> fare il loro lavoro.",
             inline=False,
         )
         embed.add_field(
             name="Nota bene:",
             value=f"""
-            •Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi, se qualcuno dovesse violare una o più regole nella chat privata, taggate {staff}, provvederemo noi a tutto.
+            •Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi, se qualcuno dovesse violare una o più regole nella chat privata, taggate <@&595651372247154729>, provvederemo noi a tutto.
             •Violazione di una regola: __Warn__
             4 Warn in 2 settimane: **Mute per __2 giorni__**
             5 Warn in 2 settimane: **__Ban__**!
             •Noi consentiamo le persone che hanno meno di 13 anni, quindi, qui potete dire l'età, non la diremo a nessuno. Se qualcuno non dovesse dire la sua vera età (es. ualcuno dice “Ho 22 anni” ma si capisce benissimo che ne ha 12) verrà bannato dal server
-            •Gli {staff} possono bannarti senza warn in qualsiasi momento!
+            •Gli <@&595651372247154729> possono bannarti senza warn in qualsiasi momento!
             """,
             inline=False,
         )
