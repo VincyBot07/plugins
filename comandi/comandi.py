@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-
+staff = <@&595651372247154729>
 
 class Regole(commands.Cog):
     def __init__(self, bot):
@@ -16,8 +16,8 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="REGOLA D'ORO!",
-            value="""Rispetta, accetta e sii gentile con tutti.
-            Tagga @Staff se vieni molestato. Non reagire.""",
+            value=f"""Rispetta, accetta e sii gentile con tutti.
+            Tagga {staff} se vieni molestato. Non reagire.""",
             inline=False,
         )
         embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf")
@@ -26,7 +26,7 @@ class Regole(commands.Cog):
             value="""
             Lo spam in questo server è proibito in questo server.
             Se qualcuno dovesse spammare, verrà kickato.
-            Se qualcuno dovesse raidare, avete il consenso di spammare @Staff,
+            Se qualcuno dovesse raidare, avete il consenso di spammare "{staff}",
             noi prenderemo i provvedimenti necessari.
             """,
             inline=False,
@@ -35,7 +35,7 @@ class Regole(commands.Cog):
             name="2. È vietato insultare e bestemmiare.",
             value="""
             Insulti, bestemmie, drammi e altre cose sono vietate in questo server.
-            Se qualcuno dovesse bestemmiare oppure insultare, taggate @Staff.
+            Se qualcuno dovesse bestemmiare oppure insultare, taggate {staff}.
             È consentito dire parolacce, però, solo fino a un certo punto.
             """,
             inline=False,
@@ -67,18 +67,18 @@ class Regole(commands.Cog):
             inline=False,
         )
         embed.add_field(
-            name="6. Niente minimod nel server.", value="Lasciate gli @Staff fare il loro lavoro.",
+            name="6. Niente minimod nel server.", value="Lasciate gli {staff} fare il loro lavoro.",
             inline=False,
         )
         embed.add_field(
             name="Nota bene:",
             value="""
-            •Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi, se qualcuno dovesse violare una o più regole nella chat privata, taggate @Staff, provvederemo noi a tutto:blobban::yea:
+            •Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi, se qualcuno dovesse violare una o più regole nella chat privata, taggate {staff}, provvederemo noi a tutto.
             •Violazione di una regola: __Warn__
             4 Warn in 2 settimane: **Mute per __2 giorni__**
             5 Warn in 2 settimane: **__Ban__**!
             •Noi consentiamo le persone che hanno meno di 13 anni, quindi, qui potete dire l'età, non la diremo a nessuno. Se qualcuno non dovesse dire la sua vera età (es. ualcuno dice “Ho 22 anni” ma si capisce benissimo che ne ha 12) verrà bannato dal server
-            •Gli @Staff possono bannarti senza warn in qualsiasi momento!
+            •Gli {staff} possono bannarti senza warn in qualsiasi momento!
             """,
             inline=False,
         )
