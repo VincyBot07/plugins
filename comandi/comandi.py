@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
-staff = <@&595651372247154729>
+staff = "<@&595651372247154729>"
+pubblicita = "<#595326853728960523>
 
 class Regole(commands.Cog):
     def __init__(self, bot):
@@ -23,7 +24,7 @@ class Regole(commands.Cog):
         embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf")
         embed.add_field(
             name="1. È vietato alcun tipo di spam, flood, raid e altri tipi di spam.",
-            value="""
+            value=f"""
             Lo spam in questo server è proibito in questo server.
             Se qualcuno dovesse spammare, verrà kickato.
             Se qualcuno dovesse raidare, avete il consenso di spammare "{staff}",
@@ -33,7 +34,7 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="2. È vietato insultare e bestemmiare.",
-            value="""
+            value=f"""
             Insulti, bestemmie, drammi e altre cose sono vietate in questo server.
             Se qualcuno dovesse bestemmiare oppure insultare, taggate {staff}.
             È consentito dire parolacce, però, solo fino a un certo punto.
@@ -60,19 +61,19 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="5. Non fare pubblicità.",
-            value="""
-            La pubblicità al di fuori di #pubblicità vale un __ban istantaneo__!
+            value=f"""
+            La pubblicità al di fuori di {pubblicità} vale un __ban istantaneo__!
             La pubblicità in privato è inclusa!
             """,
             inline=False,
         )
         embed.add_field(
-            name="6. Niente minimod nel server.", value="Lasciate gli {staff} fare il loro lavoro.",
+            name=f"6. Niente minimod nel server.", value=f"Lasciate gli {staff} fare il loro lavoro.",
             inline=False,
         )
         embed.add_field(
             name="Nota bene:",
-            value="""
+            value=f"""
             •Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi, se qualcuno dovesse violare una o più regole nella chat privata, taggate {staff}, provvederemo noi a tutto.
             •Violazione di una regola: __Warn__
             4 Warn in 2 settimane: **Mute per __2 giorni__**
