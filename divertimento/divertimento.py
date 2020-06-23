@@ -34,7 +34,9 @@ def escape(text: str, *, mass_mentions: bool = False, formatting: bool = False) 
     """
     if mass_mentions:
         text = text.replace("@everyone", "@everyuno")
+        text = text.replace("@EVERYONE", "@EVERYUNO")
         text = text.replace("@here", "@qui")
+        text = text.replace("@HERE", "@QUI")
     if formatting:
         text = text.replace("`", "\\`").replace("*", "\\*").replace("_", "\\_").replace("~", "\\~")
     return text
@@ -366,13 +368,13 @@ class Divertimento(Cog):
             Novo = novo.capitalize()
             BOT = bot.upper()
             bot = BOT.lower()
-            await ctx.send(f"{Novo}{BOT} {bot}")
+            await ctx.send(f"{Novo}{BOT} {bot}", mass_mentions=True)
         else:
             novo = str(msg1)
             Novo = novo.capitalize()
             NOVO = novo.upper()
             novo = NOVO.lower()
-            await ctx.send(f"{Novo}{NOVO} {novo}")
+            await ctx.send(f"{Novo}{NOVO} {novo}", mass_mentions=True)
 
 
 def setup(bot):
