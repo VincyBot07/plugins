@@ -352,7 +352,7 @@ class Divertimento(Cog):
         await ctx.send(message)
 
     @commands.command(aliases=["ntxt"])
-    async def novotext(self, ctx: commands.Context, msg1, *, msg2=None, mass_mentions=True):
+    async def novotext(self, ctx: commands.Context, msg1, *, msg2=None):
         """Modifica il testo in TestoTESTO testo.
         
         Se inserisci 2 parole (ad es. "novo bot"),
@@ -362,6 +362,7 @@ class Divertimento(Cog):
         NovoBOT bot è nato in questi due server:
         [TechFeed](http://discord.io/TechFeed) e [NovoBot](http://discord.io/NovoBot).
         """
+        texttt = [escape(t, mass_mentions=True) for t in msg1]
         if msg2 != None:
             novo = str(msg1)
             bot = str(msg2)
