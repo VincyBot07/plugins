@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 staff = "<@&595651372247154729>"
-pubblicità = "<#595326853728960523>"
+pubblicita = "<#595326853728960523>"
 
 class Regole(commands.Cog):
     def __init__(self, bot):
@@ -62,7 +62,7 @@ class Regole(commands.Cog):
         embed.add_field(
             name="5. Non fare pubblicità.",
             value=f"""
-            La pubblicità al di fuori di {pubblicità} vale un __ban istantaneo__!
+            La pubblicità al di fuori di {pubblicita} vale un __ban istantaneo__!
             La pubblicità in privato è inclusa!
             """,
             inline=False,
