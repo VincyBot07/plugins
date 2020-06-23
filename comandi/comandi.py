@@ -18,6 +18,7 @@ class Regole(commands.Cog):
             name="REGOLA D'ORO!",
             value="""Rispetta, accetta e sii gentile con tutti.
             Tagga @Staff se vieni molestato. Non reagire.""",
+            inline=False,
         )
         embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf")
         embed.add_field(
@@ -28,6 +29,7 @@ class Regole(commands.Cog):
             Se qualcuno dovesse raidare, avete il consenso di spammare @Staff,
             noi prenderemo i provvedimenti necessari.
             """,
+            inline=False,
         )
         embed.add_field(
             name="2. È vietato insultare e bestemmiare.",
@@ -36,6 +38,7 @@ class Regole(commands.Cog):
             Se qualcuno dovesse bestemmiare oppure insultare, taggate @Staff.
             È consentito dire parolacce, però, solo fino a un certo punto.
             """,
+            inline=False,
         )
         embed.add_field(
             name="3. È vietato avere un nome impossibile da menzionare.",
@@ -45,6 +48,7 @@ class Regole(commands.Cog):
             Se qualcuno dovesse rimettere il nome intaggabile, verrà avvertito, e,
             se necessario, verrà anche mutato!
             """,
+            inline=False,
         )
         embed.add_field(
             name="4. Non inviare NSFW.",
@@ -52,6 +56,7 @@ class Regole(commands.Cog):
             È illegale, sta scritto nei termini di servizio di Discord. [Leggi altro...](http://discord.com/terms)
             Tornando alle regole, l'invio anche di un solo video/immagine NSFW, vale un __ban istantaneo__!
             """,
+            inline=False,
         )
         embed.add_field(
             name="5. Non fare pubblicità.",
@@ -59,9 +64,11 @@ class Regole(commands.Cog):
             La pubblicità al di fuori di #pubblicità vale un __ban istantaneo__!
             La pubblicità in privato è inclusa!
             """,
+            inline=False,
         )
         embed.add_field(
             name="6. Niente minimod nel server.", value="Lasciate gli @Staff fare il loro lavoro.",
+            inline=False,
         )
         embed.add_field(
             name="Nota bene:",
