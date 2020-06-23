@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 staff = "<@&595651372247154729>"
-pubblicita = "<#595326853728960523>
+pubblicita = "<#595326853728960523>"
 
 class Regole(commands.Cog):
     def __init__(self, bot):
