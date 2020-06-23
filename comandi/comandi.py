@@ -21,7 +21,7 @@ class Regole(commands.Cog):
             Tagga {staff} se vieni molestato. Non reagire.""",
             inline=False,
         )
-        embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf")
+        embed.set_author(name="Vincysuper07", url="https://vincysuper07.cf", icon_url="https://cdn.discordapp.com/attachments/595327251579404298/682915766160588817/img2.png")
         embed.add_field(
             name="1. È vietato alcun tipo di spam, flood, raid e altri tipi di spam.",
             value=f"""
