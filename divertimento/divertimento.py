@@ -372,7 +372,7 @@ class Divertimento(Cog):
             bot = BOT.lower()
             qtext = f"{Novo}{BOT} {bot}"
             qtxt = escape(qtext, mass_mentions=True)
-            await ctx.send(qtext)
+            await ctx.send(qtxt)
         else:
             novo = str(msg1)
             Novo = novo.capitalize()
