@@ -362,7 +362,6 @@ class Divertimento(Cog):
         NovoBOT bot è nato in questi due server:
         [TechFeed](http://discord.io/TechFeed) e [NovoBot](http://discord.io/NovoBot).
         """
-        #ntxt1 = escape(msg1, mass_mentions=True)
         
         if msg2 != None:
             novo = str(msg1)
@@ -374,7 +373,8 @@ class Divertimento(Cog):
             qtxt = escape(qtext, mass_mentions=True)
             await ctx.send(qtxt)
         else:
-            novo = str(msg1)
+            msge = str(msg1)
+            novo = escape(msge, mass_mentions=True)
             Novo = novo.capitalize()
             NOVO = novo.upper()
             novo = NOVO.lower()
