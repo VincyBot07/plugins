@@ -362,8 +362,9 @@ class Divertimento(Cog):
         NovoBOT bot è nato in questi due server:
         [TechFeed](http://discord.io/TechFeed) e [NovoBot](http://discord.io/NovoBot).
         """
-
-        if msg2 != None:
+        ntxt1 = escape(msg1, mass_mentions=True)
+        ntxt2 = escape(msg2, mass_mentions=True)
+        if ntxt2 != None:
             novo = str(msg1)
             bot = str(msg2)
             Novo = novo.capitalize()
