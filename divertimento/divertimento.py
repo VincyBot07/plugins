@@ -363,14 +363,16 @@ class Divertimento(Cog):
         [TechFeed](http://discord.io/TechFeed) e [NovoBot](http://discord.io/NovoBot).
         """
         #ntxt1 = escape(msg1, mass_mentions=True)
-        msg2 = escape(msg2, mass_mentions=True)
+        
         if msg2 != None:
             novo = str(msg1)
             bot = str(msg2)
             Novo = novo.capitalize()
             BOT = bot.upper()
             bot = BOT.lower()
-            await ctx.send(f"{Novo}{BOT} {bot}")
+            qtext = f"{Novo}{BOT} {bot}"
+            qtxt = escape(qtext, mass_mentions=True)
+            await ctx.send(qtext)
         else:
             novo = str(msg1)
             Novo = novo.capitalize()
