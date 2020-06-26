@@ -56,7 +56,7 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="5. Non fare pubblicità.",
-            value=f"La pubblicità al di fuori di <#595326853728960523> vale un warn, poi kick e ban!",
+            value=f"La pubblicità al di fuori di <#595326853728960523> vale un warn, poi kick e ban!"
             "**La pubblicità in privato è __inclusa__!**",
             inline=False,
         )
