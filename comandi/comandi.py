@@ -42,8 +42,7 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="3. È vietato avere un nome impossibile da menzionare.",
-            value="""
-            "In questo server, i nomi devono essere **__tutti__ taggabili**. Quindi,\n"
+            value="In questo server, i nomi devono essere **__tutti__ taggabili**. Quindi,\n"
             "un solo nome intaggabile, verrà cambiato in qualcos'altro.\n"
             "Se qualcuno dovesse rimettere il nome intaggabile, verrà avvertito, e,\n"
             "se necessario, verrà anche mutato!",
