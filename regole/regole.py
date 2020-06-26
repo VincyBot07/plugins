@@ -56,7 +56,7 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="5. Non fare pubblicità.",
-            value=f"La pubblicità al di fuori di <#595326853728960523> vale un warn, poi kick e ban!"
+            value=f"La pubblicità al di fuori di <#595326853728960523> vale un warn, poi kick e ban!\n"
             "**La pubblicità in privato è __inclusa__!**",
             inline=False,
         )
@@ -67,11 +67,15 @@ class Regole(commands.Cog):
         )
         embed.add_field(
             name="Nota bene:",
-            value=f"•Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi, se qualcuno dovesse violare una o più regole nella chat privata, taggate <@&595651372247154729>, provvederemo noi a tutto.\n"
+            value=f"•Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi,\n"
+            "se qualcuno dovesse violare una o più regole nella chat privata, taggate <@&595651372247154729>\n,
+            "provvederemo noi a tutto.\n"
             "•Violazione di una regola: __Warn__\n"
             "4 Warn in 2 settimane: **Mute per __2 giorni__**\n"
             "5 Warn in 2 settimane: **__Ban__**!\n"
-            "•Noi consentiamo le persone che hanno meno di 13 anni, quindi, qui potete dire l'età, non la diremo a nessuno. Se qualcuno non dovesse dire la sua vera età (es. ualcuno dice “Ho 22 anni” ma si capisce benissimo che ne ha 12) verrà bannato dal server.\n"
+            "•Noi consentiamo le persone che hanno meno di 13 anni, quindi,\n"
+            "qui potete dire l'età, non la diremo a nessuno. Se qualcuno non dovesse dire la sua vera età (es. qualcuno dice “Ho 22 anni” ma si capisce benissimo che ne ha 12)\n"
+            "verrà bannato dal server.\n"
             "•Gli <@&595651372247154729> possono bannarti senza warn in qualsiasi momento!",
             inline=False,
         )
