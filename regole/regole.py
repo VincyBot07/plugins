@@ -68,7 +68,7 @@ class Regole(commands.Cog):
         embed.add_field(
             name="Nota bene:",
             value=f"•Tutte le regole elencate qui sotto, **valgono __anche__ in chat privata**, quindi,\n"
-            "se qualcuno dovesse violare una o più regole nella chat privata, taggate <@&595651372247154729>\n,
+            "se qualcuno dovesse violare una o più regole nella chat privata, taggate <@&595651372247154729>,\n"
             "provvederemo noi a tutto.\n"
             "•Violazione di una regola: __Warn__\n"
             "4 Warn in 2 settimane: **Mute per __2 giorni__**\n"
