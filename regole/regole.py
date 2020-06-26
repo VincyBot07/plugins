@@ -74,7 +74,8 @@ class Regole(commands.Cog):
             "4 Warn in 2 settimane: **Mute per __2 giorni__**\n"
             "5 Warn in 2 settimane: **__Ban__**!\n"
             "•Noi consentiamo le persone che hanno meno di 13 anni, quindi,\n"
-            "qui potete dire l'età, non la diremo a nessuno. Se qualcuno non dovesse dire la sua vera età (es. qualcuno dice “Ho 22 anni” ma si capisce benissimo che ne ha 12)\n"
+            "qui potete dire l'età, non la diremo a nessuno.\n"
+            "Se qualcuno non dovesse dire la sua vera età (es. qualcuno dice “Ho 22 anni” ma si capisce benissimo che ne ha 12)\n"
             "verrà bannato dal server.\n"
             "•Gli <@&595651372247154729> possono bannarti senza warn in qualsiasi momento!",
             inline=False,
