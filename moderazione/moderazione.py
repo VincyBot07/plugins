@@ -85,14 +85,14 @@ class Moderazione(commands.Cog):
                     with open(casefile, "w") as file:
                         file.write(str(counter))
                     case = open(casefile, "r").read()
+                                        messagekick = f"Sei stato kickato da {ctx.guild.name}"
+                    await dm.send(messagekick)
                     await member.kick(
                         reason=f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo specificato."
                     )
                     await ctx.send(
                         f"{member.name}#{member.discriminator} è stato kickato da {ctx.message.author.mention}, questo è il caso numero {case}."
                     )
-                    messagekick = f"Sei stato kickato da {ctx.guild.name}"
-                    await dm.send(messagekick)
                     vincylog = discord.utils.get(ctx.guild.text_channels, name="vincylog")
                     if vincylog == None:
                         return
@@ -153,14 +153,15 @@ class Moderazione(commands.Cog):
                     with open(casefile, "w") as file:
                         file.write(str(counter))
                     case = open(casefile, "r").read()
+                    messageban = f"Sei stato bannato da {ctx.guild.name}"
+                    await dm.send(messageban)
                     await member.ban(
                         reason=f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo dato."
                     )
                     await ctx.send(
                         f"{check} | {member.name}#{member.discriminator} è stato bannato da {ctx.message.author.mention}, questo è il caso numero {case}.\n\nhttps://imgur.com/V4TVpbC"
                     )
-                    messageban = f"Sei stato bannato da {ctx.guild.name}"
-                    await dm.send(messageban)
+
                     vincylog = discord.utils.get(ctx.guild.text_channels, name="vincylog")
                     if vincylog == None:
                         return
