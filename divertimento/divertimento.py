@@ -414,7 +414,7 @@ class Divertimento(Cog):
             "ｚ",
         ]
         new = ""
-        #exact = message.lower()
+        exact = message.lower()
         for letter in exact:
             if letter in alpha:
                 index = alpha.index(letter)
