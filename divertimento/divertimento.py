@@ -380,6 +380,48 @@ class Divertimento(Cog):
             novo = NOVO.lower()
             await ctx.send(f"{Novo}{NOVO} {novo}")
 
+    @commands.command(aliases=["sc"])
+    @commands.guild_only()
+    async def vaporwave(self, ctx, *, message):
+        """ᴄᴏɴᴠᴇʀᴛᴇ ɪʟ ᴛᴜᴏ ᴛᴇꜱᴛᴏ ᴀ ᴜɴ ᴍᴀɪᴜꜱᴄᴏʟᴏ ᴘɪᴄᴄᴏʟᴏ!!"""
+        alpha = list(string.ascii_lowercase)
+        lc = [
+            "ａ",
+            "ｂ",
+            "ｃ",
+            "ｄ",
+            "ｅ",
+            "ｆ",
+            "ｇ",
+            "ｈ",
+            "ｉ",
+            "ｊ",
+            "ｋ",
+            "ｌ",
+            "ｍ",
+            "ｎ",
+            "ｏ",
+            "ｐ",
+            "ｑ",
+            "ｒ",
+            "ｓ",
+            "ｔ",
+            "ｕ",
+            "ｖ",
+            "ｗ",
+            "ｘ",
+            "ｙ",
+            "ｚ",
+        ]
+        new = ""
+        #exact = message.lower()
+        for letter in exact:
+            if letter in alpha:
+                index = alpha.index(letter)
+                new += lc[index]
+            else:
+                new += letter
+        await ctx.send(new)
 
 def setup(bot):
     bot.add_cog(Divertimento(bot))
