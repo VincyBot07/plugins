@@ -380,7 +380,7 @@ class Divertimento(Cog):
             novo = NOVO.lower()
             await ctx.send(f"{Novo}{NOVO} {novo}")
 
-    @commands.command(aliases=["sc"])
+    @commands.command(aliases=["vapor", "vw"])
     @commands.guild_only()
     async def vaporwave(self, ctx, *, message):
         """ᴄᴏɴᴠᴇʀᴛᴇ ɪʟ ᴛᴜᴏ ᴛᴇꜱᴛᴏ ᴀ ᴜɴ ᴍᴀɪᴜꜱᴄᴏʟᴏ ᴘɪᴄᴄᴏʟᴏ!!"""
