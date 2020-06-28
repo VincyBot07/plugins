@@ -383,7 +383,10 @@ class Divertimento(Cog):
     @commands.command(aliases=["vapor", "vw"])
     @commands.guild_only()
     async def vaporwave(self, ctx, *, message):
-        """ᴄᴏɴᴠᴇʀᴛᴇ ɪʟ ᴛᴜᴏ ᴛᴇꜱᴛᴏ ᴀ ᴜɴ ᴍᴀɪᴜꜱᴄᴏʟᴏ ᴘɪᴄᴄᴏʟᴏ!!"""
+        """ｃｏｎｖｅｒｔｅ ｉｌ ｔｕｏ ｔｅｓｔｏ ａ ｖａｐｏｒｗａｖｅ!!
+        
+        
+        Nota: funziona solo in minuscolo"""
         alpha = list(string.ascii_lowercase)
         lc = [
             "ａ",
