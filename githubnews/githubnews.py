@@ -5,7 +5,7 @@ from discord.ext import commands
 colors = [0x6bc7ea, 0xc73650, 0xfdf95b]
 
 class GitHubNews(commands.Cog, name="GitHub News"):
-    def __init(self, bot):
+    def __init__(self, bot):
         self.bot = bot
     #
     @commands.command()
