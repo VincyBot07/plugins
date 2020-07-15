@@ -85,7 +85,7 @@ class Moderazione(commands.Cog):
                     with open(casefile, "w") as file:
                         file.write(str(counter))
                     case = open(casefile, "r").read()
-                                        messagekick = f"Sei stato kickato da {ctx.guild.name}"
+                    messagekick = f"Sei stato kickato da {ctx.guild.name}"
                     await dm.send(messagekick)
                     await member.kick(
                         reason=f"Moderatore - {ctx.message.author.name}#{ctx.message.author.discriminator}.\nMotivo - Nessun motivo specificato."
