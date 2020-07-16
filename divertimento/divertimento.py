@@ -431,18 +431,33 @@ class Divertimento(Cog):
         p = lorem.paragraph()
         await ctx.send(p)
 
-    @lorem.command()
+    @lorem.group()
     async def ipsum(self,ctx):
-        f"""{self.wtext}"""
+        f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.text()}"""
         t = lorem.text()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {t}")
-     
+
+    @ipsum.command(name="frase")
+    async def _frase(self,ctx):
+        f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.sentence()}"""
+        s = lorem.sentence()
+        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {s}")
+    @ipsum.command()
+    async def p(self,ctx):
+        f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.paragraph()}"""
+        p = lorem.paragraph()
+        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {p}")
+
     @lorem.command()
     async def frase(self,ctx):
         f"""{self.sentence}"""
-        s = lorem.sencence()
+        s = lorem.sentence()
         await ctx.send(s)
-    
-
+      
+    @lorem.command()
+    async def testo(self,ctx):
+        f"""{lorem.text()}"""
+        t = lorem.text()
+        await ctx.send(t)
 def setup(bot):
     bot.add_cog(Divertimento(bot))
