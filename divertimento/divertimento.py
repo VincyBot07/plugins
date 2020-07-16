@@ -87,9 +87,6 @@ class Divertimento(Cog):
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        self.sentence = lorem.sentence()
-        self.paragraph = lorem.paragraph()
-        self.wtext = lorem.text()
 
     @commands.command(name="inspirobot", aliases=["inspiro"])
     async def _inspirobot(self, ctx):
@@ -434,18 +431,18 @@ class Divertimento(Cog):
     @lorem.group(invoke_without_command=True)
     async def ipsum(self,ctx):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.text()}"""
-        t = lorem.text()
-        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {t}")
+        p = lorem.paragraph()
+        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {p}")
 
     @ipsum.command(name="frase")
     async def _frase(self,ctx):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.sentence()}"""
         s = lorem.sentence()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {s}")
-    @ipsum.command()
-    async def paragrafo(self,ctx):
-        f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.paragraph()}"""
-        p = lorem.paragraph()
+    @ipsum.command(name="testo")
+    async def _testo(self,ctx):
+        f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.text()}"""
+        t = lorem.text()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {p}")
 
     @lorem.command()
