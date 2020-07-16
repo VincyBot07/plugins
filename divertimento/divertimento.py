@@ -442,8 +442,8 @@ class Divertimento(Cog):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.sentence()}"""
         s = lorem.sentence()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {s}")
-    @ipsum.command()
-    async def p(self,ctx):
+    @ipsum.command(aliases=["p"])
+    async def paragrafo(self,ctx):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.paragraph()}"""
         p = lorem.paragraph()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {p}")
