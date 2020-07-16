@@ -424,7 +424,7 @@ class Divertimento(Cog):
                 new += letter
         await ctx.send(new)
 
-    @commands.group()
+    @commands.group(invoke_without_command=True)
     async def lorem(self,ctx):
         f"""{self.paragraph}"""
         t = lorem.text()
