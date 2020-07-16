@@ -431,7 +431,7 @@ class Divertimento(Cog):
         p = lorem.paragraph()
         await ctx.send(p)
 
-    @lorem.group()
+    @lorem.group(invoke_without_command=True)
     async def ipsum(self,ctx):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.text()}"""
         t = lorem.text()
@@ -442,7 +442,7 @@ class Divertimento(Cog):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.sentence()}"""
         s = lorem.sentence()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {s}")
-    @ipsum.command(aliases=["p"])
+    @ipsum.command()
     async def paragrafo(self,ctx):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.paragraph()}"""
         p = lorem.paragraph()
