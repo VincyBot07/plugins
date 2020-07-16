@@ -443,7 +443,7 @@ class Divertimento(Cog):
     async def _testo(self,ctx):
         f"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. {lorem.text()}"""
         t = lorem.text()
-        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {p}")
+        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {t}")
 
     @lorem.command()
     async def frase(self,ctx):
