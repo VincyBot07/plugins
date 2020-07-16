@@ -436,6 +436,12 @@ class Divertimento(Cog):
         f"""{self.wtext}"""
         t = lorem.text()
         await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {t}")
+     
+    @lorem.command()
+    async def frase(self,ctx):
+        f"""{self.sentence}"""
+        s = lorem.sencence()
+        await ctx.send(s)
     
 
 def setup(bot):
