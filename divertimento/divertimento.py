@@ -87,7 +87,9 @@ class Divertimento(Cog):
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        # self.db = bot.plugin_db.get_partition(self)
+        self.sentence = lorem.sentence()
+        self.paragraph = lorem.paragraph()
+        self.wtext = lorem.text()
 
     @commands.command(name="inspirobot", aliases=["inspiro"])
     async def _inspirobot(self, ctx):
@@ -422,13 +424,19 @@ class Divertimento(Cog):
                 new += letter
         await ctx.send(new)
 
-    @commands.command()
+    @commands.group()
     async def lorem(self,ctx):
-        """Lorem ipsum dolor sit amet, consectetur adipiscing elit."""
-        s = lorem.sentence()
-        p = lorem.paragraph()
+        f"""{self.paragraph}"""
         t = lorem.text()
-        await ctx.send(s)
+        p = lorem.paragraph()
+        await ctx.send(p)
+
+    @lorem.command()
+    async def ipsum(self,ctx):
+        f"""{self.wtext}"""
+        t = lorem.text()
+        await ctx.send(f"Lorem ipsum dolor sit amet, consectetur adipiscing elit. {t}")
+    
 
 def setup(bot):
     bot.add_cog(Divertimento(bot))
