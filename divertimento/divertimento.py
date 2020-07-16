@@ -423,7 +423,7 @@ class Divertimento(Cog):
 
     @commands.group(invoke_without_command=True)
     async def lorem(self,ctx):
-        f"""{self.paragraph}"""
+        f"""{lorem.paragraph()}"""
         t = lorem.text()
         p = lorem.paragraph()
         await ctx.send(p)
@@ -447,7 +447,7 @@ class Divertimento(Cog):
 
     @lorem.command()
     async def frase(self,ctx):
-        f"""{self.sentence}"""
+        f"""{lorem.sentence()}"""
         s = lorem.sentence()
         await ctx.send(s)
       
