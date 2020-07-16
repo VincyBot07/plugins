@@ -1,12 +1,8 @@
-import logging
+import logging, discord, box, json, string, lorem
 from enum import Enum
 from random import randint, choice
-import discord
 from discord.ext import commands
 from core import checks
-import box
-import json
-import string
 from core.models import PermissionLevel
 
 Cog = getattr(commands, "Cog", object)
@@ -425,6 +421,14 @@ class Divertimento(Cog):
             else:
                 new += letter
         await ctx.send(new)
+
+    @commands.command()
+    async def lorem(self,ctx):
+        """Lorem ipsum dolor sit amet, consectetur adipiscing elit."""
+        s = lorem.sentence()
+        p = lorem.paragraph()
+        t = lorem.text()
+        await ctx.send(s)
 
 def setup(bot):
     bot.add_cog(Divertimento(bot))
